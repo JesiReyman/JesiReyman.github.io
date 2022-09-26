@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Ahorcado</title>
+</head>
+<body>
+    <img src="Logo.svg">
+    <div id="botones-inicio">
+        <button id="iniciar-juego" class="btn" onclick="sortearPalabra()">Iniciar Juego</button>
+    </div>
+
+    <div class="display-juego" id="display-juego">
+        <div class="contenedor-canvas">
+            <canvas id="responsive-canvas" width="1000" height="800"></canvas>
+            <div class="cartel-perdiste" id="cartel-perdiste">Perdiste!</div>
+        </div>
+        <div class="container-cajas">
+            <div class="caja-palabra" id="caja-palabra"></div>
+
+            <div class="caja-fallida" id="caja-fallida"></div>
+        </div>
+
+        <div class="botones-de-juego">
+            <button class="boton-juego boton-nuevo-juego">Nuevo Juego</button>
+            <button class="boton-juego boton-desistir">Desistir</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="horca.js"></script>
+</body>
+</html>

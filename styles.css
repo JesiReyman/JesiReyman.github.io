@@ -1,0 +1,139 @@
+body{
+    font-family: "Inter";
+}
+
+#botones-inicio{
+    margin-top: 20vh;
+    display: flex;
+}
+
+#iniciar-juego{
+    display: flex;
+    cursor: pointer;
+    margin: auto;
+    width: 317px;
+    height: 114px;
+    padding: 24px;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background: #0A3871;
+    border-radius: 24px;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.display-juego{
+    display: none;
+    
+}
+
+
+.container-cajas{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    font-size: 5vh;
+    font-weight: 400;
+    line-height: 150%;
+    
+}
+
+.contenedor-canvas{
+    display: flex;
+    height: 50%;
+    width: 70%;
+    margin: auto;
+    justify-content: center;
+    
+}
+
+#responsive-canvas{
+    /* display: none;*/
+    
+     width: 70%;
+     height: 30%;
+ }
+
+ .cartel-perdiste{
+    display: none;
+    align-self: center;
+    position: relative;
+    left: -100px;
+ }
+
+.caja-palabra{
+    display: flex;
+    justify-content: space-between;
+    /*height: 7vh;*/
+}
+
+.caja-fallida{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 7vh;
+    
+}
+
+.caja-letra{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    text-align: center;
+}
+
+.letra{
+    height: 7vh;
+    margin: 0;
+}
+
+.letra-fallida{
+    margin: 5px 2px;
+    /*margin-right: 5px;*/
+    height: 7vh;
+}
+
+.guion{
+    width: 70%;
+    height: 5px;
+    background-color: #0A3871;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.botones-de-juego{
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.boton-juego{
+    margin: 2.5px 10px;
+    width: 332px;
+    height: 67px;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 24px;
+    border-radius: 24px;
+}
+
+.boton-nuevo-juego{
+    background: #0A3871;
+    color: white;
+}
+
+.boton-desistir{
+    color: #0A3871;
+}
+
+
