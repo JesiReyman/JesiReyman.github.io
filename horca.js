@@ -28,14 +28,14 @@ function dibujarCirculo(xInicial, yInicial){
 }
 
 function cartelPerdiste(){
-    console.log("esta es la funcion de cartel perdiste")
+    
     pincel.font = "36px Inter";
     pincel.fillStyle = "red";
     pincel.fillText("Fin de juego!", 800, 200);
 }
 
 function cartelGanaste(){
-    console.log("esta es la funcion de cartel ganaste")
+    
     pincel.font = "36px Inter";
     pincel.fillStyle = "darkgreen";
     pincel.fillText("Ganaste,", 800, 200);

@@ -1,6 +1,6 @@
 function sortearPalabra(){
-
-    botonesInicio.style.display = "none";
+     
+    ocultar(botonesInicio);
     mostrar(juego);
 
     dibujarCanvas();
@@ -11,11 +11,11 @@ function sortearPalabra(){
 
     palabraSorteada = palabras[numeroAleatorio];
 
-    const numeroCaracteres = palabraSorteada.length;
+    numeroCaracteres = palabraSorteada.length;
 
     crearCajasDeLetras(numeroCaracteres);
     
-    return palabraSorteada;
+    return palabraSorteada, numeroCaracteres;
 }
 
 window.addEventListener('keydown', function(e){
@@ -55,22 +55,20 @@ function acierto(indiceLetra, indiceAcierto, letraPresionada, palabraSorteada){
     while (indiceLetra != -1 && indiceAcierto == -1) {
 
         letrasCerteras.push(letraPresionada);
-
-        console.log("letras certeras: " + letrasCerteras);
+        indices.push(indiceLetra);
        
         contadorExitoso++
             
-        console.log("antes de empezar a escribir la letra certera");
+        
             if(indiceLetra < palabraSorteada.length){
-                console.log("escribiendo la letra certera");
-                document.getElementsByClassName("letra")[indiceLetra].innerHTML = letraPresionada.toString();
+                
+                document.getElementsByClassName("letra")[indiceLetra].innerHTML = letraPresionada;
            
             }
             indiceLetra = palabraSorteada.indexOf(letraPresionada, indiceLetra + 1);
            
 
             if(contadorExitoso == palabraSorteada.length){
-                console.log("ganaste!");
                 cartelGanaste();
             }
         
@@ -96,40 +94,41 @@ function desacierto(indiceLetra, indiceDesacierto, letra){
 }
 
 function mostrar(caja){
-    console.log("esto es el contenido de la caja: ");
-   // console.log(caja.childNodes);
     caja.style.display = "flex";
-    caja.style.flexDirection = "column"; 
+}
+
+function ocultar(caja){
+    caja.style.display = "none";
 }
 
 function dibujarAhorcado(contador) {
-    console.log("el contador es: " + contador)
+    
     switch (contador) {
-        case 1: dibujarLinea(300, 700, 300, 100)
+        case 1: dibujarLinea(300, 700, 300, 100);
             break;
 
-        case 2: dibujarLinea(300, 100, 700, 100)
+        case 2: dibujarLinea(300, 100, 700, 100);
             break;
 
-        case 3: dibujarLinea(700, 100, 700, 150)
+        case 3: dibujarLinea(700, 100, 700, 150);
             break;
 
-        case 4: dibujarCirculo(700, 200)
+        case 4: dibujarCirculo(700, 200);
             break;
 
-        case 5: dibujarLinea(700, 250, 700, 500)
+        case 5: dibujarLinea(700, 250, 700, 500);
             break;
 
-        case 6: dibujarLinea(700, 250, 600, 350)
+        case 6: dibujarLinea(700, 250, 600, 350);
             break;
 
-        case 7: dibujarLinea(700, 250, 800, 350)
+        case 7: dibujarLinea(700, 250, 800, 350);
             break;
 
-        case 8: dibujarLinea(700, 500, 600, 600)
+        case 8: dibujarLinea(700, 500, 600, 600);
             break;
 
-        case 9: dibujarLinea(700, 500, 800, 600)
+        case 9: dibujarLinea(700, 500, 800, 600);
             cartelPerdiste();
             break;
 
@@ -138,7 +137,6 @@ function dibujarAhorcado(contador) {
 
 function reset() {
     
-    console.log("ya existen las cajas de letras");
     while (CAJA_PALABRA.hasChildNodes()) {
         CAJA_PALABRA.removeChild(CAJA_PALABRA.firstChild);
     }
@@ -153,6 +151,8 @@ function reset() {
     letrasFallidas = [];
     letrasCerteras = [];
     esUnaLetra = false;
+    indices = [];
+    numeroCaracteres = 0;
 
     sortearPalabra();
 }
@@ -171,14 +171,36 @@ function crearCajasDeLetras(numeroCaracteres){
     }
 }
 
-let palabras = ["ECLIPSE", "GALAXIA", "ESTRELLA", "NEBULOSA", "UNIVERSO", "PLANETA", "SOL", "ESPACIO"];
+function completarPalabra(){
+    
+    for(i=0; i < numeroCaracteres; i++){
+        
+        let fueCertero = indices.includes(i);
+       
+        if(!fueCertero){
+            let posicionACompletar = document.getElementsByClassName("letra")[i];
+            posicionACompletar.style.color = "red";
+            posicionACompletar.innerHTML = palabraSorteada[i];
+        }
+    }
+    setTimeout(function(){ volver(); }, TIME_TO_WAIT);
+}
 
-let palabraSorteada = "";
-let contadorExitoso = 0;
-let contadorFallido = 0;
-let letrasFallidas = [];
-let letrasCerteras = [];
-let esUnaLetra = false;
+function volver(){
+    ocultar(juego);
+    mostrar(botonesInicio);
+}
+
+let palabras = ["ECLIPSE", "GALAXIA", "ESTRELLA", "NEBULOSA", "UNIVERSO", "PLANETA", "SOL", "ESPACIO", "LUNA", "ASTRO"];
+
+let palabraSorteada; 
+let contadorExitoso; 
+let contadorFallido; 
+let letrasFallidas; 
+let letrasCerteras; 
+let esUnaLetra; 
+let indices; 
+let numeroCaracteres; 
 
 const CAJA_PALABRA = document.getElementById("caja-palabra");
 
@@ -191,5 +213,12 @@ const CAJA_FALLIDA = document.getElementById("caja-fallida");
 let lienzo = document.getElementById('responsive-canvas') 
 
 const perdiste = document.getElementById('cartel-perdiste');
+const DESISTIR = document.getElementById('boton-desistir');
+
+DESISTIR.addEventListener("click", completarPalabra, false);
+
+const TIME_TO_WAIT = 2000; // in miliseconds.
 
 
+
+  
