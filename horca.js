@@ -31,7 +31,7 @@ function cartelPerdiste(){
     
     pincel.font = "36px Inter";
     pincel.fillStyle = "red";
-    pincel.fillText("Fin de juego!", 800, 200);
+    pincel.fillText("Fin del juego!", 800, 200);
 }
 
 function cartelGanaste(){

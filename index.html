@@ -8,9 +8,13 @@
     <title>Ahorcado</title>
 </head>
 <body>
-    <img src="Logo.svg">
+    <div class="container-logo">
+        <img src="Logo.svg" class="logo">
+    </div>
+    
     <div id="botones-inicio">
         <button id="iniciar-juego" class="btn" onclick="reset()">Iniciar Juego</button>
+        <button id="agregar-palabra">Agregar Palabra</button>
     </div>
 
     <div class="display-juego" id="display-juego">
@@ -29,7 +33,25 @@
         </div>
     </div>
 
+    <div id="pantalla-agregar-palabra">
+        
+            <input id="nueva-palabra" class="input-palabra" placeholder="Ingrese una palabra" onkeydown="return /[a-z]/i.test(event.key)" autofocus>
+       
+        
+        <div class="botones-agregar">
+            <button class="botones-guardar-cancelar" id="boton-guardar">Guardar</button>
+            <button class="botones-guardar-cancelar" id="cancelar">Volver</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Jesica Reyman</p>
+        <p>Buenos Aires, Argentina</p>
+        <p>2022</p>
+    </footer>
+
     <script src="script.js"></script>
+    
     <script src="horca.js"></script>
 </body>
 </html>

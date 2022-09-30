@@ -1,19 +1,29 @@
+html{
+    height: 100%;
+}
+
 body{
     font-family: "Inter";
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #botones-inicio{
     margin-top: 20vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 button{
     cursor: pointer;
+    border: 1px solid #a138d1;
 }
 
 #iniciar-juego{
     display: flex;
-    
     margin: auto;
     width: 317px;
     height: 114px;
@@ -22,7 +32,7 @@ button{
     align-items: center;
     text-align: center;
     justify-content: center;
-    background: #0A3871;
+    background: #a138d1;
     border-radius: 24px;
     color: white;
     font-weight: 400;
@@ -30,12 +40,30 @@ button{
     line-height: 22px;
 }
 
+#agregar-palabra {
+    width: 280px;
+    height: 67px;
+    border-radius: 24px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 8px;
+    margin: 20px auto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #a138d1;
+}
+
 .display-juego{
     display: none;
     flex-direction: column;
-    
+    height: 100%;
+    /*height: 100vh;*/
+    overflow-y: auto;
+    margin: 20px 0;
 }
-
 
 .container-cajas{
     display: flex;
@@ -50,7 +78,7 @@ button{
 
 .contenedor-canvas{
     display: flex;
-    height: 50%;
+    height: 70%;
     width: 70%;
     margin: auto;
     justify-content: center;
@@ -58,16 +86,14 @@ button{
 }
 
 #responsive-canvas{
-    /* display: none;*/
-    
      width: 70%;
-     height: 30%;
+     height: 100%;
  }
 
 .caja-palabra{
     display: flex;
     justify-content: space-between;
-    /*height: 7vh;*/
+   
 }
 
 .caja-fallida{
@@ -84,7 +110,7 @@ button{
     width: 60%;
     align-items: center;
     text-align: center;
-    color: #0A3871;
+    color: #a138d1;
 }
 
 .letra{
@@ -94,20 +120,19 @@ button{
 
 .letra-fallida{
     margin: 5px 2px;
-    /*margin-right: 5px;*/
     height: 7vh;
-    color: #0A3871;
+    color: #a138d1;
 }
 
 .guion{
     width: 70%;
     height: 5px;
-    background-color: #0A3871;
+    background-color: #a138d1;
     border-radius: 8px;
     margin: 0;
 }
 
-.botones-de-juego{
+.botones-de-juego, .botones-agregar{
     display: flex;
     flex-wrap: wrap;
     align-self: center;
@@ -115,7 +140,7 @@ button{
     width: 70%;
 }
 
-.boton-juego{
+.boton-juego, .botones-guardar-cancelar{
     margin: 2.5px 10px;
     width: 332px;
     height: 67px;
@@ -128,12 +153,66 @@ button{
 }
 
 .boton-nuevo-juego{
-    background: #0A3871;
+    background: #a138d1;
     color: white;
 }
 
 .boton-desistir{
-    color: #0A3871;
+    color: #a138d1;
 }
 
+#pantalla-agregar-palabra{
+    display: none;
+    flex-direction: column;
+    width: 50%;
+    height: 70vh;
+    margin: auto;
+    justify-content: space-between;
+}
+
+
+
+.input-palabra{
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: #a138d1;
+}
+
+.botones-agregar{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#boton-guardar{
+    background: #a138d1;
+    color: white;
+}
+
+#cancelar, input::placeholder{
+    color: #a138d1;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: #800dad;
+    color: white;
+    margin: auto 0 0 0;
+}
+
+footer p{
+    margin: 0;
+}
+
+@media screen and (max-width: 480px){
+    #responsive-canvas{
+        width: 100%;
+    }
+}
 

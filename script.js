@@ -1,31 +1,27 @@
+
 function sortearPalabra(){
      
-    ocultar(botonesInicio);
-    mostrar(juego);
-
+    ocultarYMostrar(botonesInicio, juego);
     dibujarCanvas();
 
     const cantidadPalabras = palabras.length;
-
     const numeroAleatorio = Math.floor(Math.random() * cantidadPalabras);
 
     palabraSorteada = palabras[numeroAleatorio];
-
     numeroCaracteres = palabraSorteada.length;
 
     crearCajasDeLetras(numeroCaracteres);
     
-    return palabraSorteada, numeroCaracteres;
 }
 
 window.addEventListener('keydown', function(e){
     let teclaPresionada = e.key;
+    const displayJuego = juego.style.display;
 
     chequeoDeTecla(teclaPresionada);
     
-    if(esUnaLetra === true){
+    if(esUnaLetra === true && displayJuego == "flex"){
         const LETRA = teclaPresionada.toLocaleUpperCase();
-
         let idx = palabraSorteada.indexOf(LETRA);
         let indiceFail = letrasFallidas.indexOf(LETRA);
         let indiceAcierto = letrasCerteras.indexOf(LETRA);
@@ -45,7 +41,7 @@ function chequeoDeTecla(teclaPresionada){
        
     }
     else {
-        alert("Por favor, presione alguna letra");
+        alert("Sólo se permiten letras");
         esUnaLetra = false;
     }
     return esUnaLetra;
@@ -59,16 +55,14 @@ function acierto(indiceLetra, indiceAcierto, letraPresionada, palabraSorteada){
        
         contadorExitoso++
             
-        
-            if(indiceLetra < palabraSorteada.length){
+            if(indiceLetra < numeroCaracteres){
                 
                 document.getElementsByClassName("letra")[indiceLetra].innerHTML = letraPresionada;
            
             }
             indiceLetra = palabraSorteada.indexOf(letraPresionada, indiceLetra + 1);
            
-
-            if(contadorExitoso == palabraSorteada.length){
+            if(contadorExitoso == numeroCaracteres){
                 cartelGanaste();
             }
         
@@ -93,6 +87,7 @@ function desacierto(indiceLetra, indiceDesacierto, letra){
       }
 }
 
+
 function mostrar(caja){
     caja.style.display = "flex";
 }
@@ -100,6 +95,7 @@ function mostrar(caja){
 function ocultar(caja){
     caja.style.display = "none";
 }
+
 
 function dibujarAhorcado(contador) {
     
@@ -183,15 +179,31 @@ function completarPalabra(){
             posicionACompletar.innerHTML = palabraSorteada[i];
         }
     }
-    setTimeout(function(){ volver(); }, TIME_TO_WAIT);
+    setTimeout(function(){ ocultarYMostrar(juego, botonesInicio); }, TIME_TO_WAIT);
 }
 
-function volver(){
-    ocultar(juego);
-    mostrar(botonesInicio);
+
+function ocultarYMostrar(bloqueAOcultar, bloqueAMostrar){
+    ocultar(bloqueAOcultar);
+    mostrar(bloqueAMostrar);
 }
 
-let palabras = ["ECLIPSE", "GALAXIA", "ESTRELLA", "NEBULOSA", "UNIVERSO", "PLANETA", "SOL", "ESPACIO", "LUNA", "ASTRO"];
+function irAgregarPalabra(){
+    ocultar(botonesInicio);
+    mostrar(PANTALLA_PALABRA);
+    INPUT_PALABRA.focus();
+}
+
+function agregarPalabra(){
+    let palabraNueva = document.getElementById("nueva-palabra").value;
+    palabraNueva  = palabraNueva.toUpperCase();
+    palabras.push(palabraNueva);
+    document.getElementById("nueva-palabra").value = "";
+    INPUT_PALABRA.focus();
+
+}
+
+let palabras = ["TORMENTA", "NUBE", "HURACAN", "RAYO", "GRANIZO", "LLUVIA", "SOL", "CIELO", "VIENTO", "TORNADO"];
 
 let palabraSorteada; 
 let contadorExitoso; 
@@ -202,20 +214,39 @@ let esUnaLetra;
 let indices; 
 let numeroCaracteres; 
 
-const CAJA_PALABRA = document.getElementById("caja-palabra");
+let botonesInicio = document.querySelector("#botones-inicio");
 
 let juego = document.querySelector("#display-juego");
 
-let botonesInicio = document.querySelector("#botones-inicio");
+let lienzo = document.getElementById('responsive-canvas'); 
+
+const CAJA_PALABRA = document.getElementById("caja-palabra");
 
 const CAJA_FALLIDA = document.getElementById("caja-fallida");
 
-let lienzo = document.getElementById('responsive-canvas') 
-
-const perdiste = document.getElementById('cartel-perdiste');
 const DESISTIR = document.getElementById('boton-desistir');
 
 DESISTIR.addEventListener("click", completarPalabra, false);
+
+const BOTON_AGREGAR_PALABRA = document.getElementById('agregar-palabra');
+
+BOTON_AGREGAR_PALABRA.addEventListener("click", irAgregarPalabra, false);
+
+const PANTALLA_PALABRA = document.getElementById("pantalla-agregar-palabra");
+
+const INPUT_PALABRA = document.getElementById("nueva-palabra");
+
+const BOTON_GUARDAR = document.getElementById("boton-guardar");
+
+BOTON_GUARDAR.addEventListener("click", function () {
+    agregarPalabra();
+}, false);
+
+const CANCELAR = document.getElementById("cancelar");
+
+CANCELAR.addEventListener("click", function(){ 
+    ocultarYMostrar(PANTALLA_PALABRA, botonesInicio);
+})
 
 const TIME_TO_WAIT = 2000; // in miliseconds.
 
