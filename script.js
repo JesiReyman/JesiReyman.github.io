@@ -196,11 +196,18 @@ function irAgregarPalabra(){
 
 function agregarPalabra(){
     let palabraNueva = document.getElementById("nueva-palabra").value;
-    palabraNueva  = palabraNueva.toUpperCase();
-    palabras.push(palabraNueva);
-    document.getElementById("nueva-palabra").value = "";
-    INPUT_PALABRA.focus();
+    let caracteres = palabraNueva.length;
 
+    if (caracteres <= 8) {
+        palabraNueva = palabraNueva.toUpperCase();
+        palabras.push(palabraNueva);
+        alert("Se agregó exitosamente");
+        document.getElementById("nueva-palabra").value = "";
+        INPUT_PALABRA.focus();
+    } else{
+        alert("Máximo de 8 letras!");
+    }
+    
 }
 
 let palabras = ["TORMENTA", "NUBE", "HURACAN", "RAYO", "GRANIZO", "LLUVIA", "SOL", "CIELO", "VIENTO", "TORNADO"];

@@ -181,6 +181,16 @@ button{
     color: #a138d1;
 }
 
+.aviso{
+    display: flex;
+    margin-left: 1em;
+}
+
+.aviso p{
+    margin-left: 0.5em;
+    color: #0A3871;
+}
+
 .botones-agregar{
     display: flex;
     justify-content: space-between;
