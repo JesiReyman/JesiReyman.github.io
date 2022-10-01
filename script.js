@@ -7,13 +7,18 @@ function sortearPalabra(){
     const cantidadPalabras = palabras.length;
     const numeroAleatorio = Math.floor(Math.random() * cantidadPalabras);
     let anchoPantalla = screen.width;
-    console.log(anchoPantalla);
+    
 
     if(anchoPantalla < 600){
-        console.log("la pantalla es menor a 600");
+        
         let inputLetra = document.createElement("input");
+        inputLetra.id = "input-letra"; 
         INPUT_LETRA.appendChild(inputLetra);
         inputLetra.focus();
+        inputLetras = document.getElementById("input-letra");
+        inputLetras.maxLength = 1;
+        inputLetras.size = 1;
+        escucharTactil();
     }
 
     palabraSorteada = palabras[numeroAleatorio];
@@ -73,9 +78,11 @@ function acierto(indiceLetra, indiceAcierto, letraPresionada, palabraSorteada){
            
             if(contadorExitoso == numeroCaracteres){
                 cartelGanaste();
+                setTimeout(function(){ ocultarYMostrar(juego, botonesInicio); }, TIME_TO_WAIT);
             }
         
       }
+      
 }
 
 function desacierto(indiceLetra, indiceDesacierto, letra){
@@ -92,6 +99,7 @@ function desacierto(indiceLetra, indiceDesacierto, letra){
         `
         CAJA_FALLIDA.appendChild(cardFallido);
         dibujarAhorcado(contadorFallido);
+        
         
       }
 }
@@ -135,6 +143,7 @@ function dibujarAhorcado(contador) {
 
         case 9: dibujarLinea(700, 500, 800, 600);
             cartelPerdiste();
+            completarPalabra();
             break;
 
     }
@@ -223,6 +232,8 @@ function agregarPalabra(){
     
 }
 
+
+
 let palabras = ["TORMENTA", "NUBE", "HURACAN", "RAYO", "GRANIZO", "LLUVIA", "SOL", "CIELO", "VIENTO", "TORNADO"];
 
 let palabraSorteada; 
@@ -233,6 +244,8 @@ let letrasCerteras;
 let esUnaLetra; 
 let indices; 
 let numeroCaracteres; 
+
+let inputLetras;
 
 let botonesInicio = document.querySelector("#botones-inicio");
 
@@ -271,6 +284,34 @@ CANCELAR.addEventListener("click", function(){
 })
 
 const TIME_TO_WAIT = 2000; // in miliseconds.
+
+function escucharTactil(){
+    inputLetras.addEventListener('keydown', function (e) {
+        
+        let teclaPresionada = e.key;
+        const displayJuego = juego.style.display;
+    
+        chequeoDeTecla(teclaPresionada);
+    
+        if (esUnaLetra === true && displayJuego == "flex") {
+            const LETRA = teclaPresionada.toLocaleUpperCase();
+            let idx = palabraSorteada.indexOf(LETRA);
+            let indiceFail = letrasFallidas.indexOf(LETRA);
+            let indiceAcierto = letrasCerteras.indexOf(LETRA);
+    
+            acierto(idx, indiceAcierto, LETRA, palabraSorteada);
+            desacierto(idx, indiceFail, LETRA);
+        }
+
+        document.getElementById("input-letra").value = "";
+    
+    }, false)
+    
+    
+}
+
+
+
 
 
 
