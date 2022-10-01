@@ -6,6 +6,15 @@ function sortearPalabra(){
 
     const cantidadPalabras = palabras.length;
     const numeroAleatorio = Math.floor(Math.random() * cantidadPalabras);
+    let anchoPantalla = screen.width;
+    console.log(anchoPantalla);
+
+    if(anchoPantalla < 600){
+        console.log("la pantalla es menor a 600");
+        let inputLetra = document.createElement("input");
+        INPUT_LETRA.appendChild(inputLetra);
+        inputLetra.focus();
+    }
 
     palabraSorteada = palabras[numeroAleatorio];
     numeroCaracteres = palabraSorteada.length;
@@ -140,6 +149,10 @@ function reset() {
     while (CAJA_FALLIDA.hasChildNodes()) {
         CAJA_FALLIDA.removeChild(CAJA_FALLIDA.firstChild);
     }
+
+    while (INPUT_LETRA.hasChildNodes()) {
+        INPUT_LETRA.removeChild(INPUT_LETRA.firstChild);
+    }
     
     palabraSorteada = "";
     contadorExitoso = 0;
@@ -230,6 +243,8 @@ let lienzo = document.getElementById('responsive-canvas');
 const CAJA_PALABRA = document.getElementById("caja-palabra");
 
 const CAJA_FALLIDA = document.getElementById("caja-fallida");
+
+const INPUT_LETRA = document.getElementById("contenedor-input-letra");
 
 const DESISTIR = document.getElementById('boton-desistir');
 
