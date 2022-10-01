@@ -286,11 +286,12 @@ CANCELAR.addEventListener("click", function(){
 const TIME_TO_WAIT = 2000; // in miliseconds.
 
 function escucharTactil(){
-    inputLetras.addEventListener('keydown', function (e) {
+
+    inputLetras.addEventListener('keyup', function (e) {
         
         let teclaPresionada = inputLetras.value;
         const displayJuego = juego.style.display;
-        //console.log(teclaPresionada);
+        
         chequeoDeTecla(teclaPresionada);
     
         if (esUnaLetra === true && displayJuego == "flex") {
