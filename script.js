@@ -288,9 +288,9 @@ const TIME_TO_WAIT = 2000; // in miliseconds.
 function escucharTactil(){
     inputLetras.addEventListener('keydown', function (e) {
         
-        let teclaPresionada = e.key;
+        let teclaPresionada = inputLetras.value;
         const displayJuego = juego.style.display;
-    
+        //console.log(teclaPresionada);
         chequeoDeTecla(teclaPresionada);
     
         if (esUnaLetra === true && displayJuego == "flex") {
